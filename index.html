@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Wish</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+  <div id="app" class="page-shell">
+    <div class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Birthday Gift Website</p>
+        <h1>{{ pageTitle }}</h1>
+        <p class="subtitle">Create a personalized wish, add your own message, and share it instantly.</p>
+      </div>
+      <div class="hero-art">
+        <div class="balloon balloon-1"></div>
+        <div class="balloon balloon-2"></div>
+        <div class="balloon balloon-3"></div>
+      </div>
+    </div>
+
+    <main class="card">
+      <section class="form-section">
+        <label>
+          Name to wish:
+          <input v-model="name" placeholder="Enter a name" />
+        </label>
+
+        <label>
+          Your message:
+          <textarea v-model="customText" rows="4" placeholder="Write something special..."></textarea>
+        </label>
+
+        <div class="actions">
+          <button @click="generateWish" :disabled="!name.trim()">Generate Wish</button>
+          <button class="ghost" @click="resetForm">Reset</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <div class="preview-card">
+          <p class="preview-title">Preview</p>
+          <div class="wish-preview">
+            <p class="wish-label">To:</p>
+            <p class="wish-value">{{ displayName }}</p>
+            <p class="wish-label">Wish:</p>
+            <p class="wish-value">{{ wishText }}</p>
+          </div>
+          <p class="tip">Tip: Copy this link or open the page from GitHub Pages to share with others.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
