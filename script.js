@@ -1,9 +1,9 @@
 const app = Vue.createApp({
   data() {
     return {
-      name: '',
-      customText: '',
-      pageTitle: 'Happy Birthday!',
+      name: 'Tithi',
+      customText: 'Happy birthday Tithi',
+      pageTitle: 'Happy Birthday, Tithi!',
     };
   },
   computed: {
