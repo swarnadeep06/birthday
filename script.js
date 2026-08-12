@@ -1,44 +1,14 @@
-const app = Vue.createApp({
+﻿const app = Vue.createApp({
   data() {
     return {
-      pageTitle: 'Happy birthday Tithi on your 19th birthday',
+      pageTitle: 'Happy birthday Tithi lol 🎉',
       countdownText: 'Loading...',
-      hiddenMessage: 'THANKS FOR BEING THE KINDEST SOUL I EVER MADE IN ONE LETTER',
-      letters: [],
-      bloomPulse: false,
+      messageInput: '',
+      messages: [],
+      youtubeUrl: 'https://www.youtube.com/embed/2OEL4P1Rz04?controls=1&rel=0',
     };
   },
-  computed: {
-    revealedCount() {
-      return this.letters.filter((letter) => letter.revealed).length;
-    },
-    revealedPreview() {
-      return this.letters
-        .map((letter) => (letter.char === ' ' ? ' ' : letter.revealed ? letter.char : '•'))
-        .join('');
-    },
-  },
   methods: {
-    initLetters() {
-      this.letters = Array.from(this.hiddenMessage).map((char) => ({ char, revealed: char === ' ' }));
-    },
-    revealLetter(index) {
-      const letter = this.letters[index];
-      if (!letter || letter.revealed || letter.char === ' ') {
-        return;
-      }
-      letter.revealed = true;
-      this.flashBloom();
-    },
-    flashBloom() {
-      this.bloomPulse = false;
-      requestAnimationFrame(() => {
-        this.bloomPulse = true;
-        setTimeout(() => {
-          this.bloomPulse = false;
-        }, 450);
-      });
-    },
     updateCountdown() {
       const now = new Date();
       let target = new Date(now.getFullYear(), 7, 14, 0, 0, 0);
@@ -52,12 +22,14 @@ const app = Vue.createApp({
       const seconds = Math.floor((diff % 60000) / 1000);
       this.countdownText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     },
-    touchBloom() {
-      this.flashBloom();
+    addMessage() {
+      const text = this.messageInput.trim();
+      if (!text) return;
+      this.messages.unshift(text);
+      this.messageInput = '';
     },
   },
   mounted() {
-    this.initLetters();
     this.updateCountdown();
     setInterval(this.updateCountdown, 1000);
   },

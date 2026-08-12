@@ -1,58 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Birthday Wish</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 <body>
-  <div id="app" :class="['page-shell', { 'bloom-pulse': bloomPulse }]" @click="touchBloom">
+  <div id="app" class="page-shell">
     <div class="hero">
       <div class="hero-text">
-        <p class="eyebrow">For Tithi on her 19th birthday</p>
+        <p class="eyebrow">Happy 19th, Tithi lol 🎉</p>
         <h1>{{ pageTitle }}</h1>
-        <p class="subtitle">Touch the hidden letters to reveal a secret flower-lit message.</p>
+        <p class="subtitle">A floating bouquet with soft fireworks and a clean note composer.</p>
 
         <div class="countdown-card">
-          <p class="countdown-label">Countdown to August 14</p>
+          <p class="countdown-label">August 14 countdown</p>
           <p class="countdown-value">{{ countdownText }}</p>
         </div>
       </div>
 
       <div class="hero-art">
-        <div class="spark-ring"></div>
+        <div class="bouquet">
+          <div class="stem"></div>
+          <div class="flower flower-1"></div>
+          <div class="flower flower-2"></div>
+          <div class="flower flower-3"></div>
+          <div class="flower flower-4"></div>
+        </div>
         <div class="firework firework-1"></div>
         <div class="firework firework-2"></div>
         <div class="firework firework-3"></div>
-        <div class="lighting"></div>
       </div>
     </div>
 
     <main class="card">
-      <section class="letter-stage">
-        <p class="stage-title">Hidden letter garden</p>
-        <p class="stage-subtitle">Tap each box to make flowers pop and reveal the secret note.</p>
-        <div class="letter-grid">
-          <button
-            v-for="(letter, index) in letters"
-            :key="index"
-            @click.stop="revealLetter(index)"
-            :class="['letter-box', { revealed: letter.revealed, gap: letter.char === ' ' }]"
-            :aria-label="letter.char === ' ' ? 'space' : letter.char">
-            <span>{{ letter.revealed && letter.char !== ' ' ? letter.char : '' }}</span>
-          </button>
-        </div>
+      <section class="message-panel">
+        <p class="panel-title">Birthday messages</p>
+        <p class="panel-copy">Add your note below and the page will stay focused on what matters most.</p>
 
-        <div class="secret-line" v-if="revealedCount > 0">
-          <span class="secret-text">{{ revealedPreview }}</span>
+        <label class="message-label">
+          Add message
+          <textarea v-model="messageInput" placeholder="Write your message here..." rows="4"></textarea>
+        </label>
+
+        <button class="action-button" @click="addMessage" :disabled="!messageInput.trim()">Add message</button>
+
+        <div class="message-list" v-if="messages.length">
+          <div class="message-chip" v-for="(message, index) in messages" :key="index">{{ message }}</div>
         </div>
       </section>
 
-      <section class="message-card">
-        <p class="message-title">Secret letter</p>
-        <p class="message-copy">Thanks for being the kindest soul I ever made in one letter. More surprise lines will appear later.</p>
+      <section class="music-panel">
+        <p class="panel-title">Soothing music</p>
+        <iframe class="music-frame" width="100%" height="220" :src="youtubeUrl" title="Soothing birthday music" frameborder="0" allow="autoplay; encrypted-media; clipboard-write; fullscreen" allowfullscreen></iframe>
+        <p class="panel-copy">Play if sound is not active automatically.</p>
       </section>
     </main>
   </div>

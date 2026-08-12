@@ -96,59 +96,99 @@ h1 {
 
 .hero-art {
   position: relative;
-  min-height: 300px;
+  min-height: 320px;
   border-radius: 34px;
   overflow: hidden;
   background: radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.8), transparent 24%), radial-gradient(circle at 80% 35%, rgba(255, 218, 231, 0.5), transparent 18%), linear-gradient(180deg, #761c35 0%, #2c0818 100%);
   box-shadow: inset 0 0 34px rgba(255, 255, 255, 0.1), 0 32px 74px rgba(53, 14, 34, 0.4);
 }
 
-.spark-ring,
-.firework,
-.lighting {
+.bouquet {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 42%;
+  width: 180px;
+  height: 240px;
+  transform: translateX(-50%) rotate(-6deg);
+  animation: floatBouquet 6s ease-in-out infinite;
 }
 
-.spark-ring {
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 40%, rgba(255, 236, 243, 0.18), transparent 40%);
+.stem {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 16px;
+  height: 180px;
+  background: linear-gradient(180deg, #6b2a45 0%, #3b0d1b 100%);
+  border-radius: 12px;
+  transform: translateX(-50%);
+}
+
+.flower {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+  opacity: 0.98;
+}
+
+.flower-1 {
+  top: 14%;
+  left: 30%;
+  background: radial-gradient(circle, #f5b1c3 0%, #a91c3e 80%);
+}
+
+.flower-2 {
+  top: 10%;
+  right: 18%;
+  width: 86px;
+  height: 86px;
+  background: radial-gradient(circle, #ffc8d8 0%, #7c1736 75%);
+}
+
+.flower-3 {
+  top: 38%;
+  left: 20%;
+  background: radial-gradient(circle, #fad3e0 0%, #912243 70%);
+}
+
+.flower-4 {
+  top: 34%;
+  right: 26%;
+  width: 82px;
+  height: 82px;
+  background: radial-gradient(circle, #ffdae5 0%, #8f1338 75%);
 }
 
 .firework {
-  width: 24px;
-  height: 24px;
+  position: absolute;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255, 217, 224, 0.6);
-  animation: burst 1.7s ease-in-out infinite;
-  opacity: 0;
+  box-shadow: 0 0 28px rgba(255, 213, 221, 0.8);
+  animation: burst 1.8s ease-in-out infinite;
 }
 
 .firework-1 {
-  top: 22%;
-  left: 18%;
-  background: #f9aec1;
+  top: 14%;
+  left: 12%;
+  background: #ffc7d5;
   animation-delay: 0s;
 }
 
 .firework-2 {
-  top: 35%;
-  right: 18%;
-  background: #ffdeeb;
-  animation-delay: 0.45s;
+  top: 20%;
+  right: 15%;
+  background: #ffdfe8;
+  animation-delay: 0.4s;
 }
 
 .firework-3 {
-  bottom: 22%;
-  left: 24%;
-  background: #f2768f;
-  animation-delay: 0.95s;
-}
-
-.lighting {
-  background: radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.35), transparent 20%), radial-gradient(circle at 80% 70%, rgba(255, 202, 220, 0.18), transparent 14%);
-  animation: glowPulse 4s ease-in-out infinite;
+  top: 68%;
+  left: 18%;
+  background: #f7a4bf;
+  animation-delay: 0.8s;
 }
 
 .card {
@@ -160,125 +200,90 @@ h1 {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 190, 206, 0.18));
   border: 1px solid rgba(141, 31, 58, 0.22);
   box-shadow: 0 40px 110px rgba(86, 23, 46, 0.24);
+  animation: floatCard 9s ease-in-out infinite;
 }
 
-.letter-stage {
+.message-panel,
+.music-panel {
   display: grid;
   gap: 18px;
 }
 
-.stage-title {
+.panel-title {
   margin: 0;
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: #3b0b1b;
 }
 
-.stage-subtitle {
+.panel-copy {
   margin: 0;
-  font-size: 1rem;
   color: #60182a;
-  max-width: 760px;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
-.letter-grid {
+.message-label {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
   gap: 10px;
+  font-size: 1rem;
+  color: #661b2f;
 }
 
-.letter-box {
-  min-height: 60px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: transparent;
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: transform 220ms ease, background 220ms ease, color 220ms ease, box-shadow 220ms ease;
-  position: relative;
-  overflow: hidden;
+textarea {
+  width: 100%;
+  border: 1px solid rgba(136, 24, 50, 0.22);
+  border-radius: 22px;
+  padding: 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.94);
+  color: #3a0d1f;
+  resize: vertical;
 }
 
-.letter-box::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
-
-.letter-box:hover::before,
-.letter-box:focus-visible::before {
-  opacity: 1;
-}
-
-.letter-box.revealed {
-  background: linear-gradient(180deg, #ffd4de 0%, #f2b6c4 100%);
-  color: #4b0714;
-  transform: scale(1.02);
-  box-shadow: 0 18px 52px rgba(141, 31, 58, 0.25);
-}
-
-.letter-box.gap {
-  background: transparent;
+.action-button {
+  align-self: start;
+  max-width: 220px;
   border: none;
-  cursor: default;
-}
-
-.letter-box.gap span {
-  content: '';
-}
-
-.secret-line {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  min-height: 64px;
-  padding: 18px 22px;
-  border-radius: 26px;
-  border: 1px dashed rgba(141, 31, 58, 0.32);
-  background: rgba(247, 224, 232, 0.72);
-}
-
-.secret-text {
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: #4a0f1f;
-  letter-spacing: 0.08em;
-}
-
-.message-card {
-  padding: 30px;
-  border-radius: 32px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(214, 110, 143, 0.14));
-  border: 1px solid rgba(141, 31, 58, 0.24);
-}
-
-.message-title {
-  margin: 0 0 12px;
-  font-size: 1.4rem;
+  border-radius: 24px;
+  padding: 16px 24px;
+  color: #fff;
+  background: linear-gradient(135deg, #d94b79, #8a1c39);
   font-weight: 800;
-  color: #340915;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
 }
 
-.message-copy {
-  margin: 0;
-  color: #551628;
-  font-size: 1rem;
-  line-height: 1.75;
+.action-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
-.bloom-pulse .hero,
-.bloom-pulse .card {
-  transform: scale(1.01);
-  transition: transform 250ms ease;
+.action-button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(138, 28, 57, 0.3);
+}
+
+.message-list {
+  display: grid;
+  gap: 12px;
+}
+
+.message-chip {
+  padding: 16px 18px;
+  border-radius: 24px;
+  background: rgba(255, 239, 244, 0.92);
+  border: 1px solid rgba(172, 67, 99, 0.24);
+  color: #4d1224;
+  line-height: 1.6;
+}
+
+.music-frame {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid rgba(136, 24, 50, 0.18);
+  border-radius: 22px;
 }
 
 @keyframes burst {
@@ -290,20 +295,29 @@ h1 {
     opacity: 1;
   }
   50% {
-    transform: scale(1.1) translate(0, -20px);
+    transform: scale(1.1) translate(0, -24px);
   }
   100% {
     opacity: 0;
-    transform: scale(1.6) translate(0, -80px);
+    transform: scale(1.6) translate(0, -84px);
   }
 }
 
-@keyframes glowPulse {
+@keyframes floatBouquet {
   0%, 100% {
-    opacity: 0.25;
+    transform: translateX(-50%) rotate(-6deg) translateY(0);
   }
   50% {
-    opacity: 0.42;
+    transform: translateX(-50%) rotate(-6deg) translateY(-10px);
+  }
+}
+
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 
@@ -314,7 +328,7 @@ h1 {
   }
 
   .hero-art {
-    min-height: 220px;
+    min-height: 260px;
   }
 }
 
@@ -324,12 +338,12 @@ h1 {
   }
 
   .hero-art {
-    min-height: 180px;
+    min-height: 220px;
     border-radius: 28px;
   }
 
   .subtitle,
-  .stage-subtitle {
+  .panel-copy {
     max-width: 100%;
   }
 
@@ -340,39 +354,41 @@ h1 {
 
 @media (max-width: 640px) {
   .page-shell {
-    padding: 16px;
+    padding: 18px;
   }
 
   .hero {
     padding: 18px;
   }
 
-  .letter-grid {
-    grid-template-columns: repeat(6, minmax(28px, 1fr));
-    gap: 8px;
+  .hero-art {
+    min-height: 180px;
   }
 
-  .letter-box {
-    min-height: 48px;
-    font-size: 1.05rem;
+  .message-panel,
+  .music-panel {
+    gap: 14px;
   }
 
-  .stage-title {
-    font-size: 1.35rem;
+  textarea {
+    min-height: 120px;
   }
 
-  .message-copy,
-  .secret-text {
-    font-size: 0.95rem;
+  .action-button {
+    width: 100%;
   }
 }
 
 @media (max-width: 500px) {
-  .letter-grid {
-    grid-template-columns: repeat(5, minmax(28px, 1fr));
+  .hero {
+    gap: 18px;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
   }
 
   .countdown-value {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   }
 }
