@@ -18,17 +18,19 @@ body {
 
 body {
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .page-shell {
   padding: 24px;
   max-width: 1080px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: minmax(0, 1fr) 280px;
   gap: 28px;
   align-items: center;
   padding: 32px;
@@ -308,6 +310,7 @@ h1 {
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
+    padding: 24px;
   }
 
   .hero-art {
@@ -315,21 +318,61 @@ h1 {
   }
 }
 
+@media (max-width: 720px) {
+  .hero {
+    padding: 20px;
+  }
+
+  .hero-art {
+    min-height: 180px;
+    border-radius: 28px;
+  }
+
+  .subtitle,
+  .stage-subtitle {
+    max-width: 100%;
+  }
+
+  .countdown-card {
+    width: fit-content;
+  }
+}
+
 @media (max-width: 640px) {
   .page-shell {
-    padding: 18px;
+    padding: 16px;
   }
 
   .hero {
-    padding: 24px;
+    padding: 18px;
   }
 
   .letter-grid {
-    grid-template-columns: repeat(8, minmax(32px, 1fr));
+    grid-template-columns: repeat(6, minmax(28px, 1fr));
     gap: 8px;
   }
 
   .letter-box {
-    min-height: 54px;
+    min-height: 48px;
+    font-size: 1.05rem;
+  }
+
+  .stage-title {
+    font-size: 1.35rem;
+  }
+
+  .message-copy,
+  .secret-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .letter-grid {
+    grid-template-columns: repeat(5, minmax(28px, 1fr));
+  }
+
+  .countdown-value {
+    font-size: 1.25rem;
   }
 }
