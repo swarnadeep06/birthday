@@ -5,19 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Birthday Wish</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 <body>
-  <div id="app" class="page-shell">
+  <div class="page-shell">
     <div class="hero">
       <div class="hero-text">
         <p class="eyebrow">Happy 19th, Tithi lol 🎉</p>
-        <h1>{{ pageTitle }}</h1>
+        <h1>Happy birthday Tithi lol 🎉</h1>
         <p class="subtitle">A floating bouquet with soft fireworks and a clean note composer.</p>
 
         <div class="countdown-card">
           <p class="countdown-label">August 14 countdown</p>
-          <p class="countdown-value">{{ countdownText }}</p>
+          <p class="countdown-value" id="countdownText">Loading...</p>
         </div>
       </div>
 
@@ -40,26 +39,17 @@
         <p class="panel-title">Birthday messages</p>
         <p class="panel-copy">Add your note below and the page will stay focused on what matters most.</p>
 
-        <label class="message-label">
-          Add message
-          <textarea v-model="messageInput" placeholder="Write your message here..." rows="4"></textarea>
-        </label>
+        <label class="message-label" for="messageInput">Add message</label>
+        <textarea id="messageInput" placeholder="Write your message here..." rows="4"></textarea>
 
-        <button class="action-button" @click="addMessage" :disabled="!messageInput.trim()">Add message</button>
+        <button id="addMessageButton" class="action-button" disabled>Add message</button>
 
-        <div class="message-list" v-if="messages.length">
-          <div class="message-chip" v-for="(message, index) in messages" :key="index">{{ message }}</div>
-        </div>
+        <div class="message-list" id="messageList"></div>
       </section>
 
       <section class="music-panel">
         <p class="panel-title">Soothing music</p>
-        <iframe class="music-frame" width="100%" height="220" :src="youtubeUrl" title="Soothing birthday music" frameborder="0" allow="autoplay; encrypted-media; clipboard-write; fullscreen" allowfullscreen></iframe>
-        <p class="panel-copy">Play if sound is not active automatically.</p>
-      </section>
-    </main>
-  </div>
-
+        <iframe class="music-frame" width="100%" height="220" src="https://www.youtube.com/embed/2OEL4P1Rz04?controls=1&rel=0" title="Soothing birthday music" frameborder="0" allow="autoplay; encrypted-media; clipboard-write; fullscreen" allowfullscreen></iframe>
   <script src="script.js"></script>
 </body>
 </html>
