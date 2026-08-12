@@ -1,8 +1,8 @@
 ﻿:root {
   color-scheme: dark;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  background: radial-gradient(circle at top, #fff0f4 0%, #f8d2dd 30%, #7a0a27 100%);
-  color: #2a0f1a;
+  background: radial-gradient(circle at top, #f9fcff 0%, #dcf1f7 35%, #08425d 100%);
+  color: #132128;
 }
 
 * {
@@ -12,7 +12,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at 20% 15%, #fff9fb 0%, #f5d7df 32%, #7d0f25 100%);
+  background: radial-gradient(circle at 20% 20%, #ffffff 0%, #dff4fb 30%, #0d4056 100%);
 }
 
 .page-shell {
@@ -26,80 +26,80 @@ body {
   grid-template-columns: 1fr 240px;
   gap: 28px;
   align-items: center;
-  padding: 36px;
-  border-radius: 44px;
+  padding: 34px;
+  border-radius: 38px;
   background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(180, 43, 76, 0.12);
-  box-shadow: 0 36px 110px rgba(135, 31, 52, 0.14);
+  border: 1px solid rgba(17, 65, 99, 0.16);
+  box-shadow: 0 32px 90px rgba(10, 52, 83, 0.14);
 }
 
 .eyebrow {
   margin: 0 0 18px;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #a30736;
+  color: #09637a;
   text-transform: uppercase;
   letter-spacing: 0.16em;
 }
 
 h1 {
   margin: 0 0 18px;
-  font-size: clamp(2.6rem, 4vw, 4.4rem);
-  line-height: 1.02;
-  color: #5f091b;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1.05;
+  color: #102a3c;
 }
 
 .subtitle {
   margin: 0;
   font-size: 1rem;
-  color: #61212f;
+  color: #154055;
 }
 
 .hero-art {
   position: relative;
-  min-height: 270px;
+  min-height: 260px;
 }
 
 .balloon {
   position: absolute;
-  width: 114px;
-  height: 160px;
+  width: 110px;
+  height: 150px;
   border-radius: 52% 52% 48% 48% / 70% 70% 56% 56%;
-  box-shadow: inset -12px -10px 24px rgba(0, 0, 0, 0.16), 0 24px 56px rgba(0, 0, 0, 0.14);
+  box-shadow: inset -10px -8px 22px rgba(0, 0, 0, 0.14), 0 22px 50px rgba(0, 0, 0, 0.12);
 }
 
 .balloon-1 {
   top: 0;
   left: 0;
-  background: linear-gradient(180deg, #7f0e26 0%, #d1385a 100%);
-  transform: rotate(-10deg);
+  background: linear-gradient(180deg, #064a65 0%, #0d7d9d 100%);
+  transform: rotate(-12deg);
 }
 
 .balloon-2 {
   right: 0;
-  top: 18px;
+  top: 16px;
   width: 96px;
-  height: 142px;
-  background: linear-gradient(180deg, #ff95b4 0%, #c81b41 100%);
+  height: 134px;
+  background: linear-gradient(180deg, #82c0d8 0%, #1d5f81 100%);
 }
 
 .balloon-3 {
   bottom: 0;
-  left: 16px;
-  width: 86px;
-  height: 124px;
-  background: linear-gradient(180deg, #ffffff 0%, #b32137 100%);
+  left: 18px;
+  width: 90px;
+  height: 126px;
+  background: linear-gradient(180deg, #ffffff 0%, #850f34 100%);
 }
 
 .card {
   display: grid;
   gap: 24px;
-  margin-top: 34px;
-  padding: 34px;
-  border-radius: 34px;
+  margin-top: 32px;
+  padding: 32px;
+  border-radius: 32px;
   background: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(180, 43, 76, 0.14);
-  box-shadow: 0 32px 78px rgba(142, 29, 47, 0.12);
+  border: 1px solid rgba(17, 65, 99, 0.14);
+  box-shadow: 0 30px 74px rgba(10, 52, 83, 0.12);
 }
 
 .form-section,
@@ -112,19 +112,19 @@ label {
   display: grid;
   gap: 10px;
   font-size: 0.95rem;
-  color: #621a2a;
+  color: #144158;
 }
 
 input,
 textarea {
   width: 100%;
-  border: 1px solid rgba(180, 43, 76, 0.22);
+  border: 1px solid rgba(17, 65, 99, 0.18);
   border-radius: 20px;
   padding: 16px 18px;
   font-size: 1rem;
   font-family: inherit;
-  background: #fff6f7;
-  color: #330a16;
+  background: #f6fbff;
+  color: #122a3a;
 }
 
 textarea {
@@ -145,7 +145,7 @@ button {
   padding: 15px 28px;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, #c3143b 0%, #f44d79 100%);
+  background: linear-gradient(135deg, #0d6f91 0%, #0f4d6d 100%);
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
@@ -157,28 +157,28 @@ button:disabled {
 
 button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 18px 38px rgba(194, 44, 69, 0.26);
-  background: linear-gradient(135deg, #a40d2f 0%, #e73c63 100%);
+  box-shadow: 0 18px 38px rgba(13, 74, 103, 0.24);
+  background: linear-gradient(135deg, #0b5a77 0%, #85314c 100%);
 }
 
 button.ghost {
   background: transparent;
-  color: #c3143b;
-  border: 1px solid rgba(195, 19, 59, 0.35);
+  color: #0d6f91;
+  border: 1px solid rgba(13, 111, 145, 0.35);
 }
 
 .preview-card {
   padding: 28px;
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 224, 233, 0.95));
-  border: 1px solid rgba(195, 19, 59, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(221, 244, 252, 0.95));
+  border: 1px solid rgba(17, 65, 99, 0.16);
 }
 
 .preview-title {
   margin: 0 0 18px;
   font-size: 1.18rem;
   font-weight: 700;
-  color: #6c0f20;
+  color: #144158;
 }
 
 .wish-preview {
@@ -189,22 +189,22 @@ button.ghost {
 .wish-label {
   margin: 0;
   font-weight: 700;
-  color: #6c0f20;
+  color: #144158;
 }
 
 .wish-value {
   margin: 0;
   padding: 20px;
   border-radius: 22px;
-  background: #fff4f6;
-  border: 1px solid rgba(195, 19, 59, 0.18);
-  color: #3a0d16;
+  background: #f8fcff;
+  border: 1px solid rgba(13, 65, 98, 0.18);
+  color: #102635;
 }
 
 .tip {
   margin: 18px 0 0;
   font-size: 0.95rem;
-  color: #631625;
+  color: #193842;
 }
 
 @media (max-width: 840px) {
