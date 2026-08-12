@@ -1,53 +1,65 @@
 const app = Vue.createApp({
   data() {
     return {
-      name: 'Tithi',
-      customText: 'Happy birthday Tithi',
-      pageTitle: 'Happy Birthday, Tithi!',
+      pageTitle: 'Happy birthday Tithi on your 19th birthday',
+      countdownText: 'Loading...',
+      hiddenMessage: 'THANKS FOR BEING THE KINDEST SOUL I EVER MADE IN ONE LETTER',
+      letters: [],
+      bloomPulse: false,
     };
   },
   computed: {
-    displayName() {
-      return this.name.trim() || 'Someone special';
+    revealedCount() {
+      return this.letters.filter((letter) => letter.revealed).length;
     },
-    wishText() {
-      if (this.customText.trim()) {
-        return this.customText.trim();
-      }
-      return `Wishing you a beautiful day full of joy, laughter, and all your favorite things.`;
+    revealedPreview() {
+      return this.letters
+        .map((letter) => (letter.char === ' ' ? ' ' : letter.revealed ? letter.char : '•'))
+        .join('');
     },
   },
   methods: {
-    generateWish() {
-      this.pageTitle = `Happy Birthday, ${this.displayName}!`;
-      const params = new URLSearchParams({ name: this.name, message: this.customText });
-      window.history.replaceState(null, '', `?${params.toString()}`);
+    initLetters() {
+      this.letters = Array.from(this.hiddenMessage).map((char) => ({ char, revealed: char === ' ' }));
     },
-    resetForm() {
-      this.name = '';
-      this.customText = '';
-      this.pageTitle = 'Happy Birthday!';
-      window.history.replaceState(null, '', window.location.pathname);
+    revealLetter(index) {
+      const letter = this.letters[index];
+      if (!letter || letter.revealed || letter.char === ' ') {
+        return;
+      }
+      letter.revealed = true;
+      this.flashBloom();
     },
-    loadFromQuery() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('name')) {
-        this.name = params.get('name');
+    flashBloom() {
+      this.bloomPulse = false;
+      requestAnimationFrame(() => {
+        this.bloomPulse = true;
+        setTimeout(() => {
+          this.bloomPulse = false;
+        }, 450);
+      });
+    },
+    updateCountdown() {
+      const now = new Date();
+      let target = new Date(now.getFullYear(), 7, 14, 0, 0, 0);
+      if (now >= target) {
+        target = new Date(now.getFullYear() + 1, 7, 14, 0, 0, 0);
       }
-      if (params.has('message')) {
-        this.customText = params.get('message');
-      }
-      if (!params.has('name') && !params.has('message')) {
-        const defaultParams = new URLSearchParams({ name: this.name, message: this.customText });
-        window.history.replaceState(null, '', `?${defaultParams.toString()}`);
-      }
-      if (this.name.trim()) {
-        this.pageTitle = `Happy Birthday, ${this.displayName}!`;
-      }
+      const diff = target - now;
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+      this.countdownText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    },
+    touchBloom() {
+      this.flashBloom();
     },
   },
   mounted() {
-    this.loadFromQuery();
+    this.initLetters();
+    this.updateCountdown();
+    setInterval(this.updateCountdown, 1000);
   },
 });
 

@@ -8,49 +8,51 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 <body>
-  <div id="app" class="page-shell">
+  <div id="app" :class="['page-shell', { 'bloom-pulse': bloomPulse }]" @click="touchBloom">
     <div class="hero">
       <div class="hero-text">
-        <p class="eyebrow">Birthday Gift for Tithi</p>
+        <p class="eyebrow">For Tithi on her 19th birthday</p>
         <h1>{{ pageTitle }}</h1>
-        <p class="subtitle">Your special birthday wish is ready to share publicly.</p>
+        <p class="subtitle">Touch the hidden letters to reveal a secret flower-lit message.</p>
+
+        <div class="countdown-card">
+          <p class="countdown-label">Countdown to August 14</p>
+          <p class="countdown-value">{{ countdownText }}</p>
+        </div>
       </div>
+
       <div class="hero-art">
-        <div class="balloon balloon-1"></div>
-        <div class="balloon balloon-2"></div>
-        <div class="balloon balloon-3"></div>
+        <div class="spark-ring"></div>
+        <div class="firework firework-1"></div>
+        <div class="firework firework-2"></div>
+        <div class="firework firework-3"></div>
+        <div class="lighting"></div>
       </div>
     </div>
 
     <main class="card">
-      <section class="form-section">
-        <label>
-          Name to wish:
-          <input v-model="name" placeholder="Enter a name" />
-        </label>
+      <section class="letter-stage">
+        <p class="stage-title">Hidden letter garden</p>
+        <p class="stage-subtitle">Tap each box to make flowers pop and reveal the secret note.</p>
+        <div class="letter-grid">
+          <button
+            v-for="(letter, index) in letters"
+            :key="index"
+            @click.stop="revealLetter(index)"
+            :class="['letter-box', { revealed: letter.revealed, gap: letter.char === ' ' }]"
+            :aria-label="letter.char === ' ' ? 'space' : letter.char">
+            <span>{{ letter.revealed && letter.char !== ' ' ? letter.char : '' }}</span>
+          </button>
+        </div>
 
-        <label>
-          Your message:
-          <textarea v-model="customText" rows="4" placeholder="Write something special..."></textarea>
-        </label>
-
-        <div class="actions">
-          <button @click="generateWish" :disabled="!name.trim()">Generate Wish</button>
-          <button class="ghost" @click="resetForm">Reset</button>
+        <div class="secret-line" v-if="revealedCount > 0">
+          <span class="secret-text">{{ revealedPreview }}</span>
         </div>
       </section>
 
-      <section class="preview-section">
-        <div class="preview-card">
-          <p class="preview-title">Preview</p>
-          <div class="wish-preview">
-            <p class="wish-label">To:</p>
-            <p class="wish-value">{{ displayName }}</p>
-            <p class="wish-label">Wish:</p>
-            <p class="wish-value">{{ wishText }}</p>
-          </div>
-          <p class="tip">Tip: Copy this link or open the page from GitHub Pages to share with others.</p>
-        </div>
+      <section class="message-card">
+        <p class="message-title">Secret letter</p>
+        <p class="message-copy">Thanks for being the kindest soul I ever made in one letter. More surprise lines will appear later.</p>
       </section>
     </main>
   </div>
