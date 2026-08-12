@@ -8,19 +8,20 @@
 </head>
 <body>
   <div class="page-shell">
-    <div class="hero">
-      <div class="hero-text">
-        <p class="eyebrow">Happy 19th, Tithi lol 🎉</p>
-        <h1>Happy birthday Tithi lol 🎉</h1>
-        <p class="subtitle">A floating bouquet with soft fireworks and a clean note composer.</p>
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Happy 19th, Tithi 😂</p>
+        <h1>Happy birthday Tithi</h1>
+        <p class="subtitle">A floating bouquet and soft fireworks for a clean mobile-ready birthday gift.</p>
 
         <div class="countdown-card">
-          <p class="countdown-label">August 14 countdown</p>
-          <p class="countdown-value" id="countdownText">Loading...</p>
+          <span class="countdown-label">Countdown to August 14</span>
+          <strong class="countdown-value" id="countdownText">Loading...</strong>
         </div>
       </div>
 
       <div class="hero-art">
+        <div class="spark-area"></div>
         <div class="bouquet">
           <div class="stem"></div>
           <div class="flower flower-1"></div>
@@ -32,24 +33,68 @@
         <div class="firework firework-2"></div>
         <div class="firework firework-3"></div>
       </div>
-    </div>
+    </header>
 
     <main class="card">
-      <section class="message-panel">
-        <p class="panel-title">Birthday messages</p>
-        <p class="panel-copy">Add your note below and the page will stay focused on what matters most.</p>
+      <section class="notes-panel">
+        <p class="panel-title">Hidden birthday letters</p>
+        <p class="panel-copy">Tap each hidden note to reveal the message inside.</p>
 
-        <label class="message-label" for="messageInput">Add message</label>
-        <textarea id="messageInput" placeholder="Write your message here..." rows="4"></textarea>
+        <div class="hidden-grid">
+          <article class="hidden-card">
+            <div class="hidden-meta">
+              <span>Hidden letter 1</span>
+              <button class="reveal-button" data-target="note1" aria-expanded="false" aria-controls="note1">Reveal</button>
+            </div>
+            <p id="note1" class="hidden-text" hidden>Thanks for being the kindest soul I ever met ❤️</p>
+          </article>
 
-        <button id="addMessageButton" class="action-button" disabled>Add message</button>
+          <article class="hidden-card">
+            <div class="hidden-meta">
+              <span>Hidden letter 2</span>
+              <button class="reveal-button" data-target="note2" aria-expanded="false" aria-controls="note2">Reveal</button>
+            </div>
+            <p id="note2" class="hidden-text" hidden>Stay happy always</p>
+          </article>
 
-        <div class="message-list" id="messageList"></div>
+          <article class="hidden-card">
+            <div class="hidden-meta">
+              <span>Hidden letter 3</span>
+              <button class="reveal-button" data-target="note3" aria-expanded="false" aria-controls="note3">Reveal</button>
+            </div>
+            <p id="note3" class="hidden-text" hidden>Thanks for simply existing</p>
+          </article>
+
+          <article class="hidden-card">
+            <div class="hidden-meta">
+              <span>Hidden letter 4</span>
+              <button class="reveal-button" data-target="note4" aria-expanded="false" aria-controls="note4">Reveal</button>
+            </div>
+            <p id="note4" class="hidden-text" hidden>Always smile, it suits you</p>
+          </article>
+
+          <article class="hidden-card">
+            <div class="hidden-meta">
+              <span>Hidden letter 5</span>
+              <button class="reveal-button" data-target="note5" aria-expanded="false" aria-controls="note5">Reveal</button>
+            </div>
+            <p id="note5" class="hidden-text" hidden>You're God's fav child ❤️</p>
+          </article>
+        </div>
       </section>
 
-      <section class="music-panel">
-        <p class="panel-title">Soothing music</p>
-        <iframe class="music-frame" width="100%" height="220" src="https://www.youtube.com/embed/2OEL4P1Rz04?controls=1&rel=0" title="Soothing birthday music" frameborder="0" allow="autoplay; encrypted-media; clipboard-write; fullscreen" allowfullscreen></iframe>
+      <section class="audio-panel">
+        <p class="panel-title">Soothing birthday music</p>
+        <audio id="birthdayAudio" controls loop preload="none">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+          Your browser does not support audio playback.
+        </audio>
+        <button id="playAudioButton" class="action-button">Play music</button>
+        <p class="panel-copy">Tap play once if the audio does not start automatically on mobile.</p>
+      </section>
+    </main>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

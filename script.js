@@ -1,7 +1,7 @@
 ﻿const countdownText = document.getElementById('countdownText');
-const messageInput = document.getElementById('messageInput');
-const addMessageButton = document.getElementById('addMessageButton');
-const messageList = document.getElementById('messageList');
+const playAudioButton = document.getElementById('playAudioButton');
+const birthdayAudio = document.getElementById('birthdayAudio');
+const revealButtons = document.querySelectorAll('.reveal-button');
 
 function updateCountdown() {
   const now = new Date();
@@ -17,22 +17,25 @@ function updateCountdown() {
   countdownText.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-function addMessage() {
-  const text = messageInput.value.trim();
-  if (!text) return;
-  const chip = document.createElement('div');
-  chip.className = 'message-chip';
-  chip.textContent = text;
-  messageList.prepend(chip);
-  messageInput.value = '';
-  addMessageButton.disabled = true;
+function toggleHiddenNote(event) {
+  const button = event.currentTarget;
+  const targetId = button.dataset.target;
+  const note = document.getElementById(targetId);
+  if (!note) return;
+  const isHidden = note.hidden;
+  note.hidden = !isHidden;
+  button.textContent = isHidden ? 'Hide' : 'Reveal';
+  button.setAttribute('aria-expanded', String(isHidden));
 }
 
-messageInput.addEventListener('input', () => {
-  addMessageButton.disabled = messageInput.value.trim().length === 0;
-});
+function playAudio() {
+  if (birthdayAudio.paused) {
+    birthdayAudio.play().catch(() => {});
+  }
+}
 
-addMessageButton.addEventListener('click', addMessage);
+revealButtons.forEach((button) => button.addEventListener('click', toggleHiddenNote));
+playAudioButton.addEventListener('click', playAudio);
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
