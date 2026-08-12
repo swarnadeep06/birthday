@@ -37,6 +37,10 @@ const app = Vue.createApp({
       if (params.has('message')) {
         this.customText = params.get('message');
       }
+      if (!params.has('name') && !params.has('message')) {
+        const defaultParams = new URLSearchParams({ name: this.name, message: this.customText });
+        window.history.replaceState(null, '', `?${defaultParams.toString()}`);
+      }
       if (this.name.trim()) {
         this.pageTitle = `Happy Birthday, ${this.displayName}!`;
       }
