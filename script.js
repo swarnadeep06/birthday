@@ -97,6 +97,8 @@ function updatePreview() {
 
 function toggleHiddenNote(event) {
   const button = event.currentTarget;
+  if (button.dataset.locked === 'true') return;
+
   const targetId = button.dataset.target;
   const note = document.getElementById(targetId);
   if (!note) return;
