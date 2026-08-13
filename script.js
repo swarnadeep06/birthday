@@ -3,8 +3,29 @@ const revealButtons = document.querySelectorAll('.reveal-button');
 const letterGrid = document.getElementById('letterGrid');
 const previewText = document.getElementById('previewText');
 
-const hiddenPhrase = 'HAPPY BIRTHDAY TITHI LOVE SMILE';
+const hiddenPhrase = 'HAPPY 19TH BIRTHDAY TITHI';
 const phraseLetters = Array.from(hiddenPhrase).map((char) => ({ char, revealed: false }));
+
+function playRevealSound() {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return;
+
+  const audioContext = new AudioCtx();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+
+  oscillator.type = 'triangle';
+  oscillator.frequency.value = 420;
+
+  gainNode.gain.value = 0.04;
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime + 0.12);
+
+  setTimeout(() => audioContext.close(), 180);
+}
 
 function updateCountdown() {
   const now = new Date();
@@ -47,6 +68,7 @@ function revealLetter(event) {
   item.revealed = true;
   event.currentTarget.textContent = item.char;
   event.currentTarget.classList.add('revealed');
+  playRevealSound();
   updatePreview();
 }
 
@@ -68,6 +90,7 @@ function toggleHiddenNote(event) {
   note.classList.toggle('is-open', isOpen);
   button.textContent = isOpen ? 'Hide' : 'Reveal';
   button.setAttribute('aria-expanded', String(isOpen));
+  playRevealSound();
 }
 
 revealButtons.forEach((button) => button.addEventListener('click', toggleHiddenNote));

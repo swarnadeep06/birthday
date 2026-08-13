@@ -375,6 +375,20 @@ h1 {
   transform: translateY(0);
 }
 
+.locked-card {
+  opacity: 0.75;
+}
+
+.locked-button {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.locked-message {
+  color: #7a334f;
+  font-style: italic;
+}
+
 .hidden-text[hidden] {
   display: none;
 }
