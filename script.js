@@ -106,7 +106,7 @@ function toggleHiddenNote(event) {
   const isOpen = note.hidden;
   note.hidden = !isOpen;
   note.classList.toggle('is-open', isOpen);
-  button.textContent = isOpen ? 'Hide' : 'Reveal';
+  button.textContent = isOpen ? 'Close tile' : 'Open tile';
   button.setAttribute('aria-expanded', String(isOpen));
   playRevealSound();
 }
