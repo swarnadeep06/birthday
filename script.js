@@ -101,17 +101,29 @@ function toggleHiddenNote(event) {
 
   const targetId = button.dataset.target;
   const note = document.getElementById(targetId);
+  const card = button.closest('.tile-card');
   if (!note) return;
 
   const isOpen = note.hidden;
   note.hidden = !isOpen;
   note.classList.toggle('is-open', isOpen);
+  if (card) {
+    card.classList.toggle('is-open', isOpen);
+  }
   button.textContent = isOpen ? 'Close tile' : 'Open tile';
   button.setAttribute('aria-expanded', String(isOpen));
   playRevealSound();
 }
 
 revealButtons.forEach((button) => button.addEventListener('click', toggleHiddenNote));
+
+document.querySelectorAll('.tile-card').forEach((card) => {
+  card.addEventListener('click', (event) => {
+    if (event.target.closest('.reveal-button')) return;
+    const button = card.querySelector('.reveal-button');
+    if (button) button.click();
+  });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   buildLetterGrid();
