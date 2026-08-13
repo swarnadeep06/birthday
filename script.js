@@ -1,7 +1,10 @@
 ﻿const countdownText = document.getElementById('countdownText');
-const playAudioButton = document.getElementById('playAudioButton');
-const birthdayAudio = document.getElementById('birthdayAudio');
 const revealButtons = document.querySelectorAll('.reveal-button');
+const letterGrid = document.getElementById('letterGrid');
+const previewText = document.getElementById('previewText');
+
+const hiddenPhrase = 'HAPPY BIRTHDAY TITHI LOVE SMILE';
+const phraseLetters = Array.from(hiddenPhrase).map((char) => ({ char, revealed: false }));
 
 function updateCountdown() {
   const now = new Date();
@@ -17,25 +20,60 @@ function updateCountdown() {
   countdownText.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
+function buildLetterGrid() {
+  letterGrid.innerHTML = '';
+  phraseLetters.forEach((item, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'letter-box';
+    button.textContent = item.revealed ? item.char : '';
+    button.dataset.index = String(index);
+    button.style.animationDelay = `${index * 60}ms`;
+    if (item.char === ' ') {
+      button.classList.add('letter-space');
+      button.disabled = true;
+    }
+    button.addEventListener('click', revealLetter);
+    letterGrid.appendChild(button);
+  });
+  updatePreview();
+}
+
+function revealLetter(event) {
+  const index = Number(event.currentTarget.dataset.index);
+  const item = phraseLetters[index];
+  if (!item || item.char === ' ') return;
+
+  item.revealed = true;
+  event.currentTarget.textContent = item.char;
+  event.currentTarget.classList.add('revealed');
+  updatePreview();
+}
+
+function updatePreview() {
+  const preview = phraseLetters
+    .map((item) => (item.char === ' ' ? ' ' : item.revealed ? item.char : '•'))
+    .join('');
+  previewText.textContent = preview;
+}
+
 function toggleHiddenNote(event) {
   const button = event.currentTarget;
   const targetId = button.dataset.target;
   const note = document.getElementById(targetId);
   if (!note) return;
-  const isHidden = note.hidden;
-  note.hidden = !isHidden;
-  button.textContent = isHidden ? 'Hide' : 'Reveal';
-  button.setAttribute('aria-expanded', String(isHidden));
-}
 
-function playAudio() {
-  if (birthdayAudio.paused) {
-    birthdayAudio.play().catch(() => {});
-  }
+  const isOpen = note.hidden;
+  note.hidden = !isOpen;
+  note.classList.toggle('is-open', isOpen);
+  button.textContent = isOpen ? 'Hide' : 'Reveal';
+  button.setAttribute('aria-expanded', String(isOpen));
 }
 
 revealButtons.forEach((button) => button.addEventListener('click', toggleHiddenNote));
-playAudioButton.addEventListener('click', playAudio);
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+document.addEventListener('DOMContentLoaded', () => {
+  buildLetterGrid();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
