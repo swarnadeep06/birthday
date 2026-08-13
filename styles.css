@@ -28,6 +28,12 @@ body {
 body {
   overflow-x: hidden;
   background: radial-gradient(circle at 20% 10%, #fff9fb 0%, #ffdce3 45%, #6f1734 100%);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+button * {
+  touch-action: manipulation;
 }
 
 .page-shell {
@@ -491,6 +497,7 @@ h1 {
 
   .hero {
     padding: 22px;
+    border-radius: 28px;
   }
 
   .hidden-card,
@@ -499,13 +506,23 @@ h1 {
     padding: 20px;
   }
 
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+  }
+
   .letter-grid {
-    grid-template-columns: repeat(6, minmax(32px, 1fr));
+    grid-template-columns: repeat(5, minmax(30px, 1fr));
   }
 
   .subtitle,
   .panel-copy {
     font-size: 0.96rem;
+  }
+
+  .preview-card {
+    padding: 16px 18px;
   }
 
   .action-button {
@@ -520,6 +537,19 @@ h1 {
 
   h1 {
     font-size: clamp(2.4rem, 8vw, 3.6rem);
+    line-height: 1.05;
+  }
+
+  .countdown-card {
+    width: 100%;
+  }
+
+  .countdown-label {
+    letter-spacing: 0.08em;
+  }
+
+  .countdown-value {
+    font-size: 1.15rem;
   }
 
   .hidden-meta {
@@ -528,12 +558,28 @@ h1 {
   }
 
   .letter-grid {
-    grid-template-columns: repeat(4, minmax(32px, 1fr));
+    grid-template-columns: repeat(4, minmax(30px, 1fr));
+    gap: 10px;
   }
 
   .letter-box {
-    min-height: 52px;
+    min-height: 48px;
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+  }
+
+  .preview-text {
     font-size: 1rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hidden-card {
+    padding: 14px 16px;
+  }
+
+  .hidden-text {
+    font-size: 0.96rem;
+    line-height: 1.7;
   }
 
   .preview-card {

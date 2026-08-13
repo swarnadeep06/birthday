@@ -5,26 +5,42 @@ const previewText = document.getElementById('previewText');
 
 const hiddenPhrase = 'HAPPY 19TH BIRTHDAY TITHI';
 const phraseLetters = Array.from(hiddenPhrase).map((char) => ({ char, revealed: false }));
+let audioContext = null;
 
 function playRevealSound() {
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   if (!AudioCtx) return;
 
-  const audioContext = new AudioCtx();
-  const oscillator = audioContext.createOscillator();
+  if (!audioContext) {
+    audioContext = new AudioCtx();
+  }
+
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
+
+  const now = audioContext.currentTime;
+  const primaryOsc = audioContext.createOscillator();
+  const secondOsc = audioContext.createOscillator();
   const gainNode = audioContext.createGain();
 
-  oscillator.type = 'triangle';
-  oscillator.frequency.value = 420;
+  primaryOsc.type = 'sine';
+  primaryOsc.frequency.setValueAtTime(392, now);
+  secondOsc.type = 'sine';
+  secondOsc.frequency.setValueAtTime(523.25, now);
 
-  gainNode.gain.value = 0.04;
-  oscillator.connect(gainNode);
+  gainNode.gain.setValueAtTime(0.0001, now);
+  gainNode.gain.exponentialRampToValueAtTime(0.022, now + 0.03);
+  gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
+
+  primaryOsc.connect(gainNode);
+  secondOsc.connect(gainNode);
   gainNode.connect(audioContext.destination);
 
-  oscillator.start();
-  oscillator.stop(audioContext.currentTime + 0.12);
-
-  setTimeout(() => audioContext.close(), 180);
+  primaryOsc.start(now);
+  secondOsc.start(now);
+  primaryOsc.stop(now + 0.42);
+  secondOsc.stop(now + 0.42);
 }
 
 function updateCountdown() {
